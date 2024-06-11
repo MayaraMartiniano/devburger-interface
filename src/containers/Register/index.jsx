@@ -12,11 +12,13 @@ import { Container, RightContainer, Title, Form, InputContainer, LeftContainer }
 
 
 
-export function Login() {
+export function Register() {
     const schema = yup
         .object({
+            name: yup.string().required('O nome é Obrigatório'),
             email: yup.string().email('Digite um e-mail válido').required('O email é obrigatório'),
             password: yup.string().min(6, 'A senha deve ter pelo menos 6 caracteres').required('Digite uma senha'),
+            confirmPassword: yup.string().oneOf([yup.ref('password')],'As senhas devem ser iguais',).required('Confirme sua senha'),
         })
         .required();
 
@@ -29,24 +31,37 @@ export function Login() {
    
 
     const onSubmit = async (data) => {
-       const response = await toast.promise(
-          api.post('/session', {
-            email: data.email,
-            password: data.password,
-        }),
-        {
-            pending: 'Verificando seus dados...',
-            success: 'Seja Bem-vindo(a)!',
-            error: 'Email ou Senha Incorretos!'  
-        }
-       )
-       
-       
-       
-       
 
-        console.log(response)
+        try {
+            
+
+       const {status} = await 
+       api.post('/users', {
+         name: data.name,
+         email: data.email,
+         password: data.password,
+
+     },{
+         validateStatus: () => true, //documentação axios
+     },
+ ) 
+     if (status === 200 || status === 201) {
+         toast.success('Conta cadastrada com sucesso!')
+     }  else if (status === 400) {
+         toast.error('Email já cadastrado! Faça o login para continuar.')
+     } else {
+        throw new Error()
+
+     }                     
+              
+        } catch (error) {
+            toast.error('Fala no sistema! Tente novamente')
+            
+        }
+
     }
+
+
     return (
         <Container>
             <LeftContainer>
@@ -54,11 +69,16 @@ export function Login() {
             </LeftContainer>
             <RightContainer>
                 <Title>
-                    Olá, seja bem vindo ao <span>Parrilos!</span>
-                    <br />
-                    Acesse com seu <span>Login e senha.</span>
+                    Criar Conta
                 </Title>
                 <Form onSubmit={handleSubmit(onSubmit)}>
+               
+                <InputContainer>
+                        <label>Name</label>
+                        <input type='text' {...register('name')} />
+                        <p>{errors?.name?.message}</p> 
+                    </InputContainer>
+
                     <InputContainer>
                         <label>Email</label>
                         <input type='email' {...register('email')} />
@@ -71,9 +91,15 @@ export function Login() {
                         <p>{errors?.password?.message}</p>
                     </InputContainer>
 
-                    <Button type="submit">Entrar</Button>
+                    <InputContainer>
+                        <label>Confirmar Senha</label>
+                        <input type='password' {...register('confirmPassword')} />
+                        <p>{errors?.confirmPassword?.message}</p> 
+                    </InputContainer>
+
+                    <Button type="submit">Cadastrar</Button>
                 </Form>
-                <p>Não possui conta? <a>Clique aqui.</a> </p>
+                <p>Já possui conta? <a>Clique aqui.</a> </p>
             </RightContainer>
         </Container>
     )
