@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import { Link as ReactLink} from "react-router-dom";
 import Backgound from '../../assets/backgroud2.png'
+
 
 export const Container = styled.div `
     display: flex;
@@ -46,10 +48,7 @@ export const RightContainer = styled.div `
     font-size: 18px;
     font-weight: 800 ;
  }
- a {
-    text-decoration: underline ;
-    
- }
+ 
   
    
 `
@@ -108,4 +107,11 @@ export const InputContainer = styled.div `
     }
 
 
+`
+
+export const Link = styled(ReactLink)`
+
+    text-decoration: none ;
+    color: #fff
+    
 `
