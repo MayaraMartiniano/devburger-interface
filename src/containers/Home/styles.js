@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import BannerHome from '../../assets/bannerhome.svg'
 import Background from '../../assets/backgroud2.png'
+import BannerHome from '../../assets/bannerhome.svg'
 
 
 export const Banner = styled.div `
@@ -27,7 +27,7 @@ background: linear-gradient(
 ),
 
 url('${Background}');
-height: 500px;
+
 ` 
 
-export const Content = styled `` 
+

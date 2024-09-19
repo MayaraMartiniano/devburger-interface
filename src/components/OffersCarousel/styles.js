@@ -5,6 +5,12 @@ export const Container = styled.div`
     padding-right: 40px;
 }
 
+overflow-x: hidden;
+
+.react-multi-carousel-list {
+    overflow: visible;
+}
+
 .react-multiple-carousel__arrow--left {
     left: 15px;
     top: 10px;
@@ -15,17 +21,18 @@ export const Container = styled.div`
     top: 10px;
 }
 
+
 padding-left: 40px;
+padding-bottom: 60px;
 `
 
 export const Title = styled.h2`
 font-size: 32px;
-color: #fcb900 ;
+color: #cf2e2e ;
 padding-bottom: 12px;
 position: relative;
 text-align: center;
-margin-bottom: 40px ;
-margin-top: 20px;
+margin: 70px 0;
 
 &::after {
     content:'' ;
@@ -33,35 +40,10 @@ margin-top: 20px;
     bottom: 0;
     width: 56px;
     height: 4px;
-    background-color: #fcb900 ;
+    background-color: #cf2e2e ;
     left: calc(50% - 28px); // colocar o tracinho abaixo do nome de categorias
 
 }
 
 `
 
-export const ContainerItems = styled.div`
-    background: url('${props => props.imageUrl}');
-    background-position: center;
-    background-size: cover;
-    border-radius: 20px;
-
-    display: flex;
-    align-items: center;
-    padding: 20px 10px;
-    width: 100%;
-    height: 250px;
-
- p { 
-    color: #fff;
-    background-color: rgba(0,0,0, 0.5);
-    padding: 10px 30px;
-    border-radius: 30px;
-    font-size: 22.5px;
-    font-weight: bold;
-    margin-top: 50px;
-    
- }
-
-
-`
