@@ -49,6 +49,21 @@ h1 {
         font-size: 20px;
 
     }
+
+    button {
+        font-size: 30px;
+        position: relative;
+        font-family: 'Road Rage', sans-serif;
+        right: 45%;
+        top: 35%;
+        background: none;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        border: transparent;
+       
+
+    }
 `
 
 
@@ -64,12 +79,13 @@ export const CategoryButton = styled(Link) `
     text-decoration: none;
     cursor: pointer;
     background: none;
-    color: #cf2e2e;
+    color: ${props => props.$isActiveCategory ? '#cf2e2e' : '#ff6900'} ;
     font-size: 25px;
     font-weight: 500;
     padding-bottom: 5px;
     line-height: 20px;
-    border-bottom: 4px solid #cf2e2e;
+    border: none;
+    border-bottom: ${(props) => props.$isActiveCategory && '3px solid #cf2e2e'}; 
 
 
 `

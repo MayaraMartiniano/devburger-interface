@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { formatPrice } from '../../../utils/formatPrice';
 import { CardProduct } from '../../components/CardProduct';
 import { api } from '../../services/api';
@@ -8,7 +9,30 @@ export function Menu() {
 
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
+    const [filteredProducts, setFilteredProducts ] = useState([])
+    
 
+
+    const navigate = useNavigate();
+
+    const {search} = useLocation(); //categoria=1
+
+    const queryParams = new URLSearchParams(search)
+
+    //procurando a categoria
+
+
+    const [activeCategory, setActiveCategory] = useState(() =>{
+        const categoryId = +queryParams.get('categoria') //colocando o + converte para number
+        if (categoryId) {
+            return categoryId
+        }
+        return 0;
+   
+    })
+
+
+    
     useEffect(()=> {
         async function loadCategories(){
             const {data} = await api.get('/categories')
@@ -42,8 +66,23 @@ export function Menu() {
 
     },[]);
 
+    useEffect(() => { //filtrando por categoria
+        if (activeCategory === 0) {
+            setFilteredProducts(products)
+        } else {
+            const newFilteredProducts = products.filter (
+                product => product.category_id === activeCategory,
+            )
+
+            setFilteredProducts(newFilteredProducts)
+        }
+
+    }, [products, activeCategory])
 
 
+    const handleBackClick = () => {
+        navigate(-1); // -1 significa voltar uma página no histórico
+      };
 
     return (
 <Container>
@@ -56,19 +95,39 @@ export function Menu() {
         ESTA AQUI!
         <span>Esse cardápio está irresistível</span>
     </h1>
+
+    {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+<button onClick={handleBackClick}>Página Inicial</button>
+
     
     
 </Banner>
 
 <CategoryMenu>
     {categories.map((category) => (
-        <CategoryButton key={category.id}>{category.name} </CategoryButton>
+        <CategoryButton 
+        key={category.id}
+        $isActiveCategory={category.id === activeCategory}
+        onClick={() => {
+            navigate(
+                {
+                    pathname:'/cardapio', //queryparams
+                    search:`?categoria=${category.id}`
+                },
+                {
+                    replace:true,
+                },
+                setActiveCategory(category.id),
+            )
+        }}
+        
+        >{category.name} </CategoryButton>
     ))}
 
 </CategoryMenu>
 
 <ProductsContainer>
-    {products.map((product) => (
+    {filteredProducts.map((product) => (
         <CardProduct product ={product} key={product.id}/>
     ))}
 
