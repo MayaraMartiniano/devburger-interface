@@ -1,21 +1,24 @@
 
-import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import { api } from '../../services/api'
-import { toast } from 'react-toastify'
+import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import * as yup from 'yup'
+import { useUser } from '../../hooks/UserContext'
+import { api } from '../../services/api'
 
 
 import Logo from '../../assets/parrilos1.png'
 import { Button } from '../../components/Button'
-import { Container, RightContainer, Title, Form, InputContainer, LeftContainer, Link } from './styles'
+import { Container, Form, InputContainer, LeftContainer, Link, RightContainer, Title } from './styles'
 
 
 
 
 export function Login() {
     const navigate = useNavigate()
+
+    const {putUserData} = useUser()
 
     const schema = yup
         .object({
@@ -33,7 +36,7 @@ export function Login() {
    
 
     const onSubmit = async (data) => {
-       const {data : {token}} = await toast.promise(
+       const {data : userData} = await toast.promise(
           api.post('/session', {
             email: data.email,
             password: data.password,
@@ -54,9 +57,9 @@ export function Login() {
        
        
        
-       
+       putUserData(userData)
 
-      localStorage.setItem('token', token)
+      
     }
     return (
         <Container>
