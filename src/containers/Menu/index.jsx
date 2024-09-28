@@ -95,10 +95,6 @@ export function Menu() {
         ESTA AQUI!
         <span>Esse cardápio está irresistível</span>
     </h1>
-
-    {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-<button onClick={handleBackClick}>Página Inicial</button>
-
     
     
 </Banner>

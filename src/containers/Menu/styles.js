@@ -50,21 +50,7 @@ h1 {
 
     }
 
-    button {
-        font-size: 30px;
-        position: relative;
-        font-family: 'Road Rage', sans-serif;
-        right: 45%;
-        top: 35%;
-        background: none;
-        color: #fff;
-        text-decoration: none;
-        cursor: pointer;
-        border: transparent;
-       
-
-    }
-`
+ `
 
 
 export const CategoryMenu = styled.div`
