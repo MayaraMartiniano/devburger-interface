@@ -21,7 +21,7 @@ padding-left: 40px;
 
 export const Title = styled.h2`
 font-size: 32px;
-color: #fcb900 ;
+color: #ff6900 ;
 padding-bottom: 12px;
 position: relative;
 text-align: center;
@@ -34,7 +34,7 @@ margin-top: 20px;
     bottom: 0;
     width: 56px;
     height: 4px;
-    background-color: #fcb900 ;
+    background-color: #ff6900 ;
     left: calc(50% - 28px); // colocar o tracinho abaixo do nome de categorias
 
 }
@@ -69,7 +69,7 @@ export const CategoryButton = styled(Link) `
     text-decoration: none;
 
     &:hover {
-        background-color: #fcb900
+        background-color: #ff6900
     }
 
 `

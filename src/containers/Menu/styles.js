@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import BannerHamburger from '../../assets/Parrilos1601.png'
 import Background from '../../assets/backgroud2.png'
-import BannerHamburger from '../../assets/banner-hamburger.svg'
+
 
 export const Container = styled.div`
 width: 100%;
@@ -28,18 +29,19 @@ export const Banner = styled.div`
 
 background: url('${BannerHamburger} ') no-repeat;
 background-color: #1f1f1f;
-background-position: center;
+background-position: initial;
 background-size: cover;
+height: 480px;
 
 h1 {
     font-family: 'Road Rage', sans-serif;
     font-size: 80px;
     line-height: 65px;
     color: #fff;
-    position: absolute;
+    position: relative;
 
-    right: 20%;
-    top: 30%
+    right: 35%;
+    top: 10%
 
     }
 

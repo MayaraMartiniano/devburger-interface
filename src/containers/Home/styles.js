@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import BannerHome from '../../assets/Parrilos-Banner.png'
 import Background from '../../assets/backgroud2.png'
-import BannerHome from '../../assets/bannerhome.svg'
 
 
 export const Banner = styled.div `

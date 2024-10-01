@@ -1,9 +1,11 @@
 
+import { useCart } from "../../hooks/CartContext"
 import { CartButton } from "../CartButton"
 import { CardImage, Container } from "./styles"
 
 
 export function CardProduct ({product}){
+    const {putProductInCart} = useCart()
   
     return (
         <Container>
@@ -13,9 +15,7 @@ export function CardProduct ({product}){
                 <strong>{product.currencyValue}</strong>
             </div>
 
-            <CartButton>
-                
-            </CartButton>
+            <CartButton onClick={() => putProductInCart(product)}> </CartButton>
 
             
                            
