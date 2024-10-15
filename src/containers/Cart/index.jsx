@@ -1,5 +1,5 @@
 
-import { CartItems } from '../../components/CartItems'
+import { CartItems, CartResume } from '../../components'
 import { Banner, Container, Content, Title } from './styles'
 
 
@@ -12,7 +12,7 @@ export function Cart () {
             <Title>Checkout - Pedido</Title>
             <Content>
                 <CartItems/>
-               {/* <CartResume/>*/}
+                <CartResume/>
             </Content>
 
         </Container>
