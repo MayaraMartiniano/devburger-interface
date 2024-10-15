@@ -1,4 +1,5 @@
 
+import { CartItems } from '../../components/CartItems'
 import { Banner, Container, Content, Title } from './styles'
 
 
@@ -10,8 +11,8 @@ export function Cart () {
             </Banner>
             <Title>Checkout - Pedido</Title>
             <Content>
-                {/*<CartItems/>
-                <CartResume/>*/}
+                <CartItems/>
+               {/* <CartResume/>*/}
             </Content>
 
         </Container>

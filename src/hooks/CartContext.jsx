@@ -30,7 +30,9 @@ const putProductInCart = (product) => {         //adicionando produto ao carrinh
 
 
 const clearCart = () => {
+    setCartProducts([])
 
+    updateLocalStorage([])
 
 }
 
